@@ -16,7 +16,8 @@ export default function MeetingsPage({username}) {
         });
 
         if (response.ok) {
-            const nextMeetings = [...meetings, meeting];
+            const newMeeeting = await response.json();
+            const nextMeetings = [...meetings, newMeeeting];
             setMeetings(nextMeetings);
             setAddingNewMeeting(false);
         }
@@ -39,7 +40,6 @@ export default function MeetingsPage({username}) {
                 method: 'DELETE',
             });
         if (response.ok) {
-
             const nextMeetings = meetings.filter(m => m !== meeting);
             setMeetings(nextMeetings);
         }
